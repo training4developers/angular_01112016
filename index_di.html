@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{message}}
+			</div>
+		</div>
+
+		<script>
+
+			myCtrl.$inject = ["$rootScope", "$window", "$log"];
+
+			function myCtrl($rootScope, $window, $log) {
+
+					$rootScope.message = "Hi Everyone!";
+					$log.log("welcome to class");
+					$window.alert("hola!");
+
+			}
+
+			angular.module("MyApp", [])
+				.controller("MyCtrl", myCtrl);
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+
+				<form>
+					<label>New Color <input ng-model="newColor"></label>
+					<button type="button" ng-click="addColor()">Add Color</button>
+				</form>
+
+				<ul>
+					<li ng-repeat="color in colors">{{$odd}} {{color}}</li>
+				</ul>
+				<ul>
+					<li ng-repeat="car in cars">{{car.make}} - {{car.model}}</li>
+				</ul>
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.controller("MyCtrl", function($scope) {
+
+					$scope.colors = ["yellow","red","blue","white","green","saffron"]
+
+					$scope.addColor = function() {
+
+						$scope.$apply(function() {
+							$scope.colors.push($scope.newColor);
+						});
+						console.log("add color");
+						console.dir($scope.colors);
+					};
+
+					$scope.cars = [
+						{ make: "Toyota", model: "Camry", year: 2015 },
+						{ make: "Honda", model: "Pilot", year: 2016 },
+						{ make: "Ford", model: "C-Max", year: 2015 },
+						{ make: "Hyundai", model: "Elantra", year: 2013 }
+					];
+
+				});
+
+		</script>
+
+	</body>
+</html>

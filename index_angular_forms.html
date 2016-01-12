@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+		<style>
+
+			input.ng-invalid.ng-touched {
+				border: 2px solid red;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+
+				<form novalidate name="contactForm" ng-submit="showContact()">
+
+					<div>
+						<label>First Name: <input type="text" ng-model="contact.firstName" required name="contactFirstName"></label>
+						<span ng-show="t.$invalid && t.$touched">Please enter a first name.</span>
+					</div>
+
+					<div>
+						<label>
+							Is Employee:
+							<input type="checkbox" ng-model="contact.isEmployee"
+								name="contactIsEmployee">
+						</label>
+					</div>
+
+					<div>
+							<fieldset>
+								<legend>Reason for Contact</legend>
+								<label>
+									<input type="radio" name="contactReason" value="business" ng-model="contact.reason">
+									Business
+								</label>
+								<label>
+									<input type="radio" name="contactReason" value="personal" ng-model="contact.reason">
+									Personal
+								</label>
+								<label>
+									<input type="radio" name="contactReason" value="referral" ng-model="contact.reason">
+									Referral
+								</label>
+							</fieldset>
+					</div>
+
+					<div>
+						<label>
+							Country:
+							<select ng-model="contact.country" name="contactCountry"
+								ng-options="country.code as country.name group by country.location for country in countries">
+								<option value="">Select One...</option>
+							</select>
+						</label>
+					</div>
+
+					<div>
+						<label>
+							Comments:
+							<textarea ng-model="contact.comments" rows="5" cols="40" name="contactComments"></textarea>
+						</label>
+					</div>
+
+					<button>Send</button>
+
+				</form>
+
+			</div>
+		</div>
+
+		<script>
+
+			// function h(s) {
+			// 	s.t = s.contactForm.contactFirstName;
+			// }
+
+			angular.module("MyApp", [])
+				.controller("MyCtrl", function($scope) {
+
+					$scope.contact = {
+						firstName: "Luis",
+						isEmployee: true,
+						reason: "referral"
+					};
+
+					$scope.countries = [
+						{ name: "Pakistan", code: "pk", location: "Asia" },
+						{ name: "India", code: "in", location: "Asia" },
+						{ name: "Hong Kong SAR", code: "hk", location: "Asia" },
+						{ name: "Columbia", code: "co", location: "South America" },
+						{ name: "Canada", code: "ca", location: "North America" },
+						{ name: "United States", code: "us", location: "North America" },
+						{ name: "United Kingdom", code: "uk", location: "Europe" }
+					];
+
+					//$scope.$applyAsync(h.bind(null, $scope));
+
+					$scope.showContact = function() {
+						console.dir($scope.contact);
+					}
+
+				});
+
+		</script>
+
+	</body>
+</html>

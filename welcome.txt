@@ -1,0 +1,14 @@
+Welcome to Comprehensive Angular.js!
+
+Instructor: Eric Greene
+
+Schedule:
+
+	Monday - Friday: 8:30am to 4:30pm
+
+	Breaks:
+		Morning: 10:15am to 10:30am
+		Lunch: Noon to 1pm
+		Afternoon: 2:45pm to 3pm
+
+Class Introductions...

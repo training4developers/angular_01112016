@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			Root Message: {{o.message}}<br>
+			Root Message: <input ng-model="o.message">
+			<div ng-controller="MyCtrl">
+				Child Message: {{o.message}}<br>
+				Child Message: <input ng-model="o.message">
+				<button ng-click="showMessage()">Show Message</button>
+			</div>
+
+		</div>
+
+		<script>
+			angular.module("MyApp", [])
+				.controller("MyCtrl", function($log, $rootScope, $scope) {
+
+					$rootScope.o = {
+						message: "Hi Class!"
+					};
+
+					$log.log("test");
+
+					// $rootScope.message = "Hi Class!";
+
+					$scope.showMessage = function() {
+						console.dir($scope);
+					};
+
+					// console.log($scope.message);
+					console.dir($scope);
+
+				});
+
+		</script>
+
+	</body>
+</html>

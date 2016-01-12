@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+	</head>
+
+	<body>
+
+		<script>
+
+			"use strict";
+
+			function doSomething() {
+				console.dir(this);
+			}
+
+			doSomething();
+
+			window.doSomething();
+
+			var o = {
+				id: 1,
+				doSomething: doSomething
+			};
+
+			o.doSomething();
+
+			console.log(window.doSomething === o.doSomething);
+
+			function bind(fn,context) {
+				return function() {
+					fn.call(context, 1,2,3)
+					fb.apply(content, [1,2,3]);
+				};
+			}
+
+		</script>
+
+	</body>
+</html>
