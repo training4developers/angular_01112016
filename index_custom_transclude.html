@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div my-dir>
+				<h1>{{message}}</h1>
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("myDir", function($compile) {
+
+					return {
+						compile: function(tElement, tAttrs) {
+
+							var tpl = tElement.html();
+							tElement.empty();
+
+							return function(scope, element, attrs) {
+
+								scope.message = "It worked!";
+
+								function transclude(fn) {
+									var linkingFn = $compile(tpl);
+									var domElements = linkingFn(scope);
+									fn(domElements);
+								}
+
+								transclude(function(clone) {
+									element.append(clone);
+								});
+
+
+							};
+						}
+					};
+
+				});
+
+		</script>
+
+	</body>
+</html>

@@ -9,53 +9,15 @@
 
 	<body>
 		<div ng-app="MyApp">
-			<div ng-controller="MyCtrl">
-				<select ng-model="activeLang" ng-options="lang.code as lang.name for lang in langs">
-				</select>
-				{{'GREETING' | translate:activeLang}}
-
-				Color Filter: <input ng-model="colorFilter">
-				<ul>
-					<li ng-repeat="color in colors | filter:colorFilter | orderBy:'toString()'">{{color}}</li>
-				</ul>
+			Show Me: <input type="checkbox" ng-model="showMe">
+			<div ng-if="showMe">
+				You can see me!
 			</div>
 		</div>
 
 		<script>
 
-			var resources = {
-				'GREETING': {
-					'EN': "Hello!",
-					'SP': "Hola!",
-					'FR': "Bonjour!"
-				}
-			};
-
-			angular.module("MyApp", [])
-				.filter("translate", function() {
-
-					return function(value, lang) {
-						return resources[value][lang];
-					}
-
-				})
-				.controller("MyCtrl", function($scope) {
-
-					$scope.langs = [
-						{ name: 'English', code: 'EN' },
-						{ name: 'Spanish', code: 'SP' },
-						{ name: 'French', code: 'FR' }
-					];
-
-					$scope.colors = [
-						"red", "green", "blue", "orange", "black", "purple", "pink", "brown"
-					];
-
-					$scope.activeLang = 'SP';
-					$scope.message = "hi class! its snowing...";
-
-					console.log($scope.$eval("'GREETING' | translate:activeLang"));
-				});
+			angular.module("MyApp", []);
 
 		</script>
 

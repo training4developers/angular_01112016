@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div my-dir></div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("myDir", function() {
+
+					// directive definition object
+					return {
+
+						compile: function(tElement, tAttrs) {
+
+							tElement.append("<div>Compile: {{message}}</div>");
+
+							return {
+								pre: function(scope, element, attrs) {
+								},
+								// post-link function
+								post:function(scope, element, attrs) {
+									scope.message = "The Hartford is amazing!";
+
+									element.append("<div>Link: {{message}}</div>");
+								}
+							};
+
+						}
+
+					};
+
+				})
+				// .directive("myDir", function() {
+				//
+				// 	// directive definition object
+				// 	return {
+				//
+				// 		compile: function(tElement, tAttrs) {
+				//
+				// 			tElement.append("<div>Compile: {{message}}</div>");
+				//
+				// 			// post-link function
+				// 			return function(scope, element, attrs) {
+				// 				scope.message = "The Hartford is amazing!";
+				//
+				// 				element.append("<div>Link: {{message}}</div>");
+				//
+				// 			}
+				//
+				// 		}
+				//
+				// 	};
+				//
+				// })
+				// .directive("myDir", function() {
+				//
+				// 	// directive definition object
+				// 	return {
+				// 		// post-link function
+				// 		link: function(scope, element, attrs) {
+				// 			element.html("Welcome to Angular.js!");
+				// 		}
+				// 	};
+				//
+				// })
+				// .directive("myDir", function() {
+				//
+				// 	// post-link function
+				// 	return function(scope, element, attrs) {
+				// 		element.html("Welcome to Angular.js!");
+				// 	};
+				//
+				// })
+
+		</script>
+
+	</body>
+</html>

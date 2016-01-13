@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div my-dir></div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("myDir", function() {
+
+					// directive definition object
+					return {
+						restrict: "A",
+						//template: "<div>{{message}}</div>",
+						//templateUrl: "tpls/test.html",
+						template: function(tElement, tAttrs) {
+							tElement.append("<div>!!!!{{message}}</div>");
+						},
+						link: function(scope, element, attrs) {
+							scope.message = "Insurance Rocks!";
+						}
+					};
+
+				}).run(function($templateCache) {
+
+					$templateCache.put("tpls/test.html", "<div>{{message}}!!!</div>");
+
+				})
+
+
+		</script>
+
+	</body>
+</html>
