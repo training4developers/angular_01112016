@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<input ng-model="message">
+			<div my-dir id="test" data-hartford="{{message}}"></div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("myDir", function() {
+
+					return {
+						link: function(scope, element, attrs) {
+							attrs.$observe("hartford", function(value) {
+								console.log(value);
+							});
+						}
+					};
+
+				});
+
+		</script>
+
+	</body>
+</html>

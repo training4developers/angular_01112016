@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div my-dir>
+				<h1>{{message}}</h1>
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("myDir", function() {
+
+					return {
+						transclude: true,
+						// template: "<span>Some random stuff...</span>" +
+						// 	"<div ng-transclude></div><div ng-transclude></div>" +
+						// 	"<div ng-transclude></div><div ng-transclude></div>" +
+						// 	"<div ng-transclude></div><div ng-transclude></div>",
+						link: function(scope, element, attrs, ctrl, transclude) {
+							scope.message = "Hi Larry!";
+
+							var clones = [];
+
+							transclude(function(clone) {
+								clones.push(clone);
+							});
+							transclude(function(clone) {
+								clones.push(clone);
+							});
+							transclude(function(clone) {
+								clones.push(clone);
+							});
+							transclude(function(clone) {
+								clones.push(clone);
+							});
+							transclude(function(clone) {
+								clones.push(clone);
+							});
+
+							element.append(clones);
+
+						}
+
+
+					};
+
+				});
+
+		</script>
+
+	</body>
+</html>

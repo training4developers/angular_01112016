@@ -9,15 +9,72 @@
 
 	<body>
 		<div ng-app="MyApp">
-			Show Me: <input type="checkbox" ng-model="showMe">
-			<div ng-if="showMe">
-				You can see me!
+			<div ng-controller="MyCtrl">
+				{{message}}
 			</div>
 		</div>
 
 		<script>
 
-			angular.module("MyApp", []);
+			function Data() {
+
+				this.getData = function() {
+					return "some data";
+				};
+
+			}
+
+			angular.module("MyApp", [])
+				.provider("data3", function() {
+
+					var prefix = "";
+
+					return {
+						setPrefix: function(newPrefix) {
+							prefix = newPrefix;
+						},
+						// factory
+						$get: function() {
+							return {
+								getData: function() {
+									return prefix + "some data";
+								}
+							}
+						}
+					}
+
+				})
+				.config(function(data3Provider) {
+					data3Provider.setPrefix("some prefix> ");
+				})
+				.factory("data2Factory", function() {
+
+					return new Data();
+
+				})
+				.service("data", Data)
+				.config(function($provide) {
+
+					$provide.decorator("$log", function($delegate) {
+
+						var originalLog = $delegate.log;
+
+						$delegate.log = function(msg) {
+							originalLog("MyApp> " + msg);
+						};
+
+						//return $delegate;
+
+					});
+
+				})
+				.controller("MyCtrl", function($scope, data3, $log) {
+
+					$log.log("here is some info");
+
+					$scope.message = data3.getData();
+
+				});
 
 		</script>
 

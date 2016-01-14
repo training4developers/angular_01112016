@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{messageA}}
+				<div my-dir="messageA" click-me="doSomething()" one-way="{{messageA | uppercase}}">
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("myDir", function() {
+
+					return {
+						scope: {
+							msgB: "=myDir",
+							oneWay: "@",
+							clickMe: "&"
+						},
+						template: "<h1>{{msgB}}</h1><input ng-model='msgB'>{{oneWay}}<button ng-click='clickMe()'>Click Me</button>"
+					};
+
+				})
+				.controller("MyCtrl", function($scope) {
+					$scope.messageA = "Almost time for lunch!";
+
+					$scope.doSomething = function() {
+						console.log("did it!");
+					};
+				})
+
+		</script>
+
+	</body>
+</html>

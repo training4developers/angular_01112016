@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+		<style>
+			input.ng-invalid.ng-touched {
+				border: 2px solid red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			Age: <input ng-model="age" type="number" thf-min-age="18">
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("thfMinAge", function() {
+
+					return {
+						require: "ngModel",
+						link: function (scope, element, attrs, ngModelCtrl) {
+
+							function validate(value) {
+								if (parseInt(value) >= parseInt(attrs.thfMinAge)) {
+									ngModelCtrl.$setValidity("thf-min-age", true);
+									return value;
+								} else {
+									ngModelCtrl.$setValidity("thf-min-age", false);
+									return;
+								}
+							}
+
+							ngModelCtrl.$formatters.push(validate);
+							ngModelCtrl.$parsers.push(validate);
+
+						}
+					};
+
+				});
+
+		</script>
+
+	</body>
+</html>

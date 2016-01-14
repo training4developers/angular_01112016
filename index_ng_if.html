@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			Show Me: <input type="checkbox" ng-model="showMe">
+			<div ng-if="showMe">
+				You can see me!
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", []);
+
+		</script>
+
+	</body>
+</html>

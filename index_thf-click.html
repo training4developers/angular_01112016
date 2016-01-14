@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Welcome to Angular.js!</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				<button thf-click="doSomething()">Ok</button>
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.directive("thfClick", function() {
+
+					return {
+						scope: {
+							clickFn: "&thfClick"
+						},
+						link: function(scope, element) {
+
+							function click() {
+								scope.$apply(scope.clickFn);
+							}
+
+							element.on("click", click);
+
+							scope.$on("$destroy", function() {
+								element.off("click", click);
+							});
+
+						}
+					};
+
+				})
+				.controller("MyCtrl", function($scope) {
+					$scope.messageA = "Almost time for lunch!";
+
+					$scope.doSomething = function() {
+						console.log("did it!");
+					};
+				})
+
+		</script>
+
+	</body>
+</html>
