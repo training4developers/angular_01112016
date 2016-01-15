@@ -24,7 +24,7 @@ describe("Directives Test", function() {
 			element = linkingFn(mockScope);
 
 		mockScope.$digest();
-		expect(element.find("input").hasClass("ng-valid-required-input")).toEqual(true);
+		expect(element.find("input").hasClass("ng-vaflid-required-input")).toEqual(true);
 
 		mockScope.form.firstName.$setViewValue("");
 		expect(element.find("input").hasClass("ng-invalid-required-input")).toEqual(true);

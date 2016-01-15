@@ -18,6 +18,7 @@ require("http")
 		if (filePath === "/" || (
 			!filePath.startsWith("/css") &&
 			!filePath.startsWith("/fonts") &&
+			!filePath.startsWith("/tpls") &&
 			!filePath.startsWith("/js")
 		)) {
 			filePath += "index.html";

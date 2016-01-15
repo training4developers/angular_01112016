@@ -1,0 +1,19 @@
+<div>
+	<label>Name: <input name="widgetName" ng-model="widget.name"></label>
+</div>
+<div>
+	<label>Desc: <input name="widgetDescription" ng-model="widget.description"></label>
+</div>
+<div>
+	<label>Color: <input name="widgetColor" ng-model="widget.color"></label>
+</div>
+<div>
+	<label>Size: <input name="widgetSize" ng-model="widget.size"></label>
+</div>
+<div>
+	<label>Qty: <input name="widgetQuantity" ng-model="widget.quantity"></label>
+</div>
+
+<button ng-click="saveWidget()">Save</button>
+<button ng-click="deleteWidget()">Delete</button>
+<button ng-click="returnToList()">Return to List</button>
