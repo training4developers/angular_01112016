@@ -1,12 +1,19 @@
 "use strict";
 
-const
+if (!String.prototype.startsWith) {
+  String.prototype.startsWith = function(searchString, position) {
+    position = position || 0;
+    return this.indexOf(searchString, position) === position;
+  };
+}
+
+var
 	defaultPort = 8080;
 
 require("http")
 	.createServer(function(req, res) {
 
-		let filePath = require("url").parse(req.url).path;
+		var filePath = require("url").parse(req.url).path;
 
 		if (filePath === "/" || (
 			!filePath.startsWith("/css") &&
@@ -39,6 +46,6 @@ require("http")
 	})
 	.listen(defaultPort, function() {
 
-		console.log(`web server listening on port ${defaultPort}`);
+		console.log("web server listening on port " + defaultPort);
 
 	});
